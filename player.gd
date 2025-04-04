@@ -28,7 +28,7 @@ func _physics_process(delta):
 	velocity = input_direction * (SPEED * (0.7 if is_attacking else 1.0))
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("ui_select") and can_attack:
+	if Input.is_action_just_pressed("attack") and can_attack:
 		perform_attack()
 
 func perform_attack():
