@@ -11,6 +11,18 @@ config_version=5
 [application]
 
 config/name="Lock and Load"
-run/main_scene="uid://y7mvyc3io1ao"
+run/main_scene="uid://cymq10tmk1nv1"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=960
+window/stretch/mode="viewport"
+window/stretch/scale=2.0
+window/stretch/scale_mode="integer"
+
+[layer_names]
+
+2d_physics/layer_1="level"
