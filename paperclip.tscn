@@ -7,8 +7,12 @@
 resource_name = "PaperclipStabComponent"
 script/source = "extends KeyComponent
 
+const STAB = preload(\"res://stab.tscn\")
+
 func on_swing(player, key):
-	pass
+	var stab = STAB.instantiate()
+	add_child(stab)
+	stab.stab()
 "
 
 [node name="Key" instance=ExtResource("1_xqy54")]

@@ -13,6 +13,7 @@ var is_swinging:
 @onready var animation_player = %AnimationPlayer
 
 func _ready():
+	position_components()
 	if auto_equip:
 		var ancestor = get_parent()
 		while ancestor and ancestor is not Player:
@@ -26,6 +27,13 @@ func swing():
 			comp.on_swing(player, self)
 	animation_player.play("swing")
 
-func add_component(component):
-	key_components
-	pass
+func position_components():
+	var left_edge = 12.0
+	for component in key_components.get_children():
+		if component is KeyComponent:
+			component.position.x = left_edge + component.width/2.0
+			left_edge += component.width
+
+func add_component(component: KeyComponent):
+	key_components.add_child(component)
+	position_components()

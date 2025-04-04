@@ -19,15 +19,14 @@ func _physics_process(delta):
 		input_direction = input_direction.normalized()
 	
 	var key = get_held_key()
+	var swinging = key.is_swinging
 	
-	if not key.is_swinging:
-		var swing_angle = (get_global_mouse_position() - global_position).angle()
-		key_holder_pivot.global_rotation = swing_angle
+	key_holder.visible = swinging
 	
-	velocity = input_direction * (SPEED * (0.7 if key and key.is_swinging else 1.0))
+	velocity = input_direction * (SPEED * (0.7 if key and swinging else 1.0))
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("attack") and key:
+	if Input.is_action_just_pressed("attack") and not swinging:
 		perform_attack(key)
 
 func get_held_key() -> Key:
@@ -40,5 +39,7 @@ func equip(key: Key):
 	key.player = self
 
 func perform_attack(key: Key):
+	var swing_angle = (get_global_mouse_position() - global_position).angle()
+	key_holder_pivot.global_rotation = swing_angle
 	key.swing()
 	
