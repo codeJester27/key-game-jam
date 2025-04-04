@@ -22,8 +22,19 @@ func _physics_process(delta):
 	
 	var direction = (player.global_position - global_position).normalized()
 	var distance = global_position.distance_to(player.global_position)
+	var relative_pos = player.global_position - global_position
 	
 	var speed_multiplier = clamp(distance/follow_distance, 0.5, 1.0)
 	var target_velocity = direction * SPEED * speed_multiplier
 	velocity = velocity.lerp(target_velocity, acceleration * delta)
 	move_and_slide()
+	
+	if relative_pos.y < 0:
+		$AnimatedSprite2D.play("back_move")
+	elif relative_pos.y > 0:
+		$AnimatedSprite2D.play("front_move")
+	
+	if relative_pos.x > 0:
+		$AnimatedSprite2D.flip_h = true
+	elif relative_pos.x < 0:
+		$AnimatedSprite2D.flip_h = false
