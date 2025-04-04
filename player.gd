@@ -1,8 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
-@export var SPEED = 500.0
+@export var SPEED = 250.0
 @onready var sword: Node2D = $key_sword
+@onready var screen_size = get_viewport_rect().size
 var attack_cooldown: float = 0.5
 var can_attack: bool = true
 
@@ -27,9 +28,25 @@ func _physics_process(delta):
 		
 	velocity = input_direction * (SPEED * (0.7 if is_attacking else 1.0))
 	move_and_slide()
+	_clamp_to_screen()
 	
 	if Input.is_action_just_pressed("attack") and can_attack:
 		perform_attack()
+
+func _clamp_to_screen():
+	# Get the sprite's actual size (adjust if your hitbox is different)
+	var sprite_size = Vector2(128, 128) * .35
+	var half_size = sprite_size / 2
+	
+	# Calculate screen boundaries considering sprite size
+	var min_x = half_size.x
+	var max_x = screen_size.x - half_size.x
+	var min_y = half_size.y
+	var max_y = screen_size.y - half_size.y
+	
+	# Clamp position
+	global_position.x = clamp(global_position.x, min_x, max_x)
+	global_position.y = clamp(global_position.y, min_y, max_y)
 
 func perform_attack():
 	if !can_attack: return
