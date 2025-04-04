@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="Lock and Load"
+run/main_scene="uid://y7mvyc3io1ao"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
