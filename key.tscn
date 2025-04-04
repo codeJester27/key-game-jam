@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://bov7f775wmtvt"]
+
+[ext_resource type="Script" uid="uid://chmd1lqgwyun5" path="res://key.gd" id="1_p0yg6"]
+[ext_resource type="Texture2D" uid="uid://b0vrcnurhnp0o" path="res://Sprite-0001.png" id="2_p0yg6"]
+
+[sub_resource type="Animation" id="Animation_krfvd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p0yg6"]
+resource_name = "swing"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 2, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 2, 0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_krfvd"]
+_data = {
+&"RESET": SubResource("Animation_krfvd"),
+&"swing": SubResource("Animation_p0yg6")
+}
+
+[node name="Key" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_p0yg6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_krfvd")
+}
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="KeyBase" type="Sprite2D" parent="Pivot"]
+texture = ExtResource("2_p0yg6")
+
+[node name="KeyComponents" type="Node2D" parent="Pivot"]
+unique_name_in_owner = true
