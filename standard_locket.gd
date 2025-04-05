@@ -1,9 +1,10 @@
-class_name standardLocklet
+class_name StandardLocklet
 extends CharacterBody2D
 
 @export var SPEED = 125
 @export var follow_distance: float = 100.0
 @export var acceleration: float = 5.0
+@export var health: int = 10
 
 @export var player: CharacterBody2D
 
@@ -38,3 +39,8 @@ func _physics_process(delta):
 		$AnimatedSprite2D.flip_h = true
 	elif relative_pos.x < 0:
 		$AnimatedSprite2D.flip_h = false
+
+
+func take_damage(source: Node):
+	$damage_timer.start()
+	

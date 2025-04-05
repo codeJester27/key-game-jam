@@ -24,6 +24,10 @@ window/size/window_height_override=960
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+Damageable="Has a `take_damage` method"
+
 [input]
 
 ui_left={
@@ -94,3 +98,4 @@ right={
 2d_physics/layer_1="level"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemy"
+2d_physics/layer_4="enemy_hitbox"
