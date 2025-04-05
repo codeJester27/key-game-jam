@@ -11,6 +11,7 @@ func _ready():
 		%KeyChoicesRow.get_node(str(i)).pressed.connect(key_choice_made.bind(i))
 
 func appear() -> bool:
+	get_tree().paused = true
 	show()
 	%ComponentChoice.show()
 	%KeyChoice.hide()
@@ -57,6 +58,7 @@ func key_choice_made(choice_index: int):
 	disappear()
 
 func disappear():
+	get_tree().paused = false
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.3)
 	tween.tween_callback(queue_free)

@@ -65,3 +65,6 @@ func calculate_knockback(damage: int, direction: Vector2):
 	
 	await get_tree().create_timer(0.3).timeout
 	is_knockback = false
+
+func attack_should_crit(source):
+	return source.get("key_component") is GreenKeyComponent

@@ -7,7 +7,7 @@ const HEAL = preload("res://heal_label_settings.tres")
 var velocity: Vector2
 
 func appear(number, critical = false):
-	text = str(number)
+	text = String.num(number, 2)
 	if critical:
 		label_settings = CRIT
 	elif number < 0:

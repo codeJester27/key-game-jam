@@ -5,8 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dbhrtjqdpe54c" path="res://locklets/red_locklet.tscn" id="3_8y611"]
 [ext_resource type="PackedScene" uid="uid://dquns5ihnk57h" path="res://locklets/green_locklet.tscn" id="4_gy3jp"]
 [ext_resource type="PackedScene" uid="uid://7tyhkopyphfq" path="res://locklets/pink_locklet.tscn" id="5_o3xwl"]
-[ext_resource type="PackedScene" path="res://chest.tscn" id="6_o3xwl"]
-[ext_resource type="PackedScene" path="res://locklets/PianoLocklet.tscn" id="7_dmbys"]
+[ext_resource type="PackedScene" uid="uid://cd6kh08m137v5" path="res://chest.tscn" id="6_o3xwl"]
+[ext_resource type="PackedScene" uid="uid://cktwc2bx3kvms" path="res://locklets/orange_locklet.tscn" id="7_dmbys"]
+[ext_resource type="PackedScene" uid="uid://ssx7qyr25bfs" path="res://locklets/PianoLocklet.tscn" id="7_dmbys"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6d3l7"]
 vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
@@ -192,6 +193,8 @@ position = Vector2(2319, 421)
 [node name="StandardLocklet9" parent="." instance=ExtResource("2_8y611")]
 position = Vector2(95, 1595)
 
+[node name="OrangeLocklet" parent="." instance=ExtResource("7_dmbys")]
+position = Vector2(532, 1349)
 [node name="RedLocklet4" parent="." instance=ExtResource("3_8y611")]
 position = Vector2(1513, 225)
 
