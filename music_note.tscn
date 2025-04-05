@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d35ihxq7653t6"]
+
+[ext_resource type="Script" uid="uid://bkqtgighve6v4" path="res://music_note.gd" id="1_aceds"]
+[ext_resource type="Texture2D" uid="uid://btt0mbb5wx3d6" path="res://aseprite/music_notes.png" id="1_m1p73"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aceds"]
+size = Vector2(57, 41)
+
+[node name="MusicNote" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_aceds")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_m1p73")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -1.5)
+shape = SubResource("RectangleShape2D_aceds")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

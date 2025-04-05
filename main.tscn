@@ -13,7 +13,7 @@ metadata/_edit_horizontal_guides_ = [-272.0]
 texture_filter = 1
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(650, 1816)
+position = Vector2(657, 1748)
 
 [node name="DungeonCamera" type="Camera2D" parent="."]
 script = ExtResource("7_272bh")
