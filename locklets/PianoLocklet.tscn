@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://ssx7qyr25bfs"]
+
+[ext_resource type="Script" uid="uid://d27t0cxr68td5" path="res://locklets/piano_locklet.gd" id="1_dytos"]
+[ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="1_qii8i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dytos"]
+atlas = ExtResource("1_qii8i")
+region = Rect2(64, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm517"]
+atlas = ExtResource("1_qii8i")
+region = Rect2(0, 512, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gyku5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dytos")
+}],
+"loop": true,
+"name": &"back_frame",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm517")
+}],
+"loop": true,
+"name": &"only_frame",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qii8i"]
+size = Vector2(50, 37)
+
+[node name="PianoLocklet" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_dytos")
+SPEED = 0
+acceleration = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_gyku5")
+animation = &"only_frame"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 0.5)
+shape = SubResource("RectangleShape2D_qii8i")
+
+[node name="NoteSpawn" type="Marker2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
