@@ -41,7 +41,7 @@ func _physics_process(delta):
 	elif relative_pos.x < 0:
 		$AnimatedSprite2D.flip_h = false
 
-func take_damage(source: Node, hit_position: Vector2):
+func take_damage(damage, source: Node, hit_position: Vector2):
 	var direction = (player.global_position - global_position).normalized()
 	if particles_scene == null:
 		push_error("No particles scene assigned!")
