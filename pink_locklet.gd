@@ -1,80 +1,52 @@
 class_name PinkLocklet
-extends CharacterBody2D
+extends StandardLocklet
 
-@export var SPEED = 150
-@export var follow_distance: float = 100.0
-@export var acceleration: float = 5.0
-@export var max_health: int = 20
-@export var health: int = 20
-@export var player: CharacterBody2D
 @export var aura_heal_amount := 5
+@export var heal_particles_scene: PackedScene = preload("res://heal_particles.tscn")
 
-@export var particles_scene: PackedScene = preload("res://gpu_particles_2d.tscn")
-var heal_particles = preload("res://heal_particles.tscn")
+var allies_in_range: Array[Node] = []
 
 func _ready():
-	$AnimatedSprite2D.play("front_move")
-	if !player:
-		player = get_tree().get_first_node_in_group("Player")
-		if !player:
-			push_error("No player reference assigned!")
-			set_physics_process(false)
-	$Aura/Timer.wait_time = 3.0
+	super._ready()  # Call parent's _ready first
+	$Aura.body_entered.connect(_on_aura_body_entered)
+	$Aura.body_exited.connect(_on_aura_body_exited)
+	$Aura/Timer.timeout.connect(_on_aura_timer_timeout)
 	$Aura/Timer.start()
 
-func _physics_process(delta):
-	if !player or !is_instance_valid(player):
-		return
-	
-	var direction = (player.global_position - global_position).normalized()
-	var distance = global_position.distance_to(player.global_position)
-	var relative_pos = player.global_position - global_position
-	
-	var speed_multiplier = clamp(distance/follow_distance, 0.5, 1.0)
-	var target_velocity = direction * SPEED * speed_multiplier
-	velocity = velocity.lerp(target_velocity, acceleration * delta)
-	move_and_slide()
-	
-	if relative_pos.y < 0:
-		$AnimatedSprite2D.play("back_move")
-	elif relative_pos.y > 0:
-		$AnimatedSprite2D.play("front_move")
-	
-	if relative_pos.x > 0:
-		$AnimatedSprite2D.flip_h = true
-	elif relative_pos.x < 0:
-		$AnimatedSprite2D.flip_h = false
+func _on_aura_body_entered(body: Node):
+	if body.is_in_group("enemies") and body != self:
+		allies_in_range.append(body)
+		print("Ally entered: ", body.name)
+
+func _on_aura_body_exited(body: Node):
+	allies_in_range.erase(body)
+	print("Ally exited: ", body.name)
+
+func _on_aura_timer_timeout():
+	heal_all_allies(aura_heal_amount)
+
+func heal_all_allies(amount: int):
+	for ally in allies_in_range:
+		if is_instance_valid(ally) and ally.has_method("heal"):
+			heal_ally(ally, amount)
+
+func heal_ally(ally: Node, amount: int):
+	ally.heal(amount)
+	spawn_heal_particles_on(ally)
+
+func spawn_heal_particles_on(target: Node):
+	var particles = heal_particles_scene.instantiate() 
+	target.add_child(particles)
+	particles.emitting = true
+	particles.finished.connect(particles.queue_free)
 
 func heal(amount: int):
-	modify_health(amount)
-	heal_particles.instantiate()
-	add_child(heal_particles)
-	heal_particles.emitting = true
-	heal_particles.finished.connect(heal_particles.queue_free)
-
-func take_damage(damage, source: Node, hit_position: Vector2):
-	var direction = (player.global_position - global_position).normalized()
-	if particles_scene == null:
-		push_error("No particles scene assigned!")
-		return
-	
-	var particles = particles_scene.instantiate()
+	super.modify_health(amount)
+	var particles = heal_particles_scene.instantiate()
 	add_child(particles)
-	particles.global_position = hit_position
 	particles.emitting = true
-	
-	if particles.has_signal("finished"):
-		particles.finished.connect(particles.queue_free)
-	else:
-		var timer = get_tree().create_timer(1.0)
-		timer.timeout.connect(particles.queue_free)
+	particles.finished.connect(particles.queue_free)
 
-	modify_health(-damage)
-	
-	var knockback_dir = -direction
-	velocity = knockback_dir * 400
 
-func modify_health(delta: int):
-	health = clamp(health + delta, 0, max_health)
-	if health <= 0:
-		queue_free()
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.

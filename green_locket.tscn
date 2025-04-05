@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://khgh3qfooiq0" path="res://green_locket.gd" id="1_4lhml"]
 [ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="1_hodkj"]
-[ext_resource type="PackedScene" uid="uid://y6qh4yxoxkst" path="res://gpu_particles_2d.tscn" id="3_dsemt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4lhml"]
 atlas = ExtResource("1_hodkj")
@@ -48,8 +47,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hodkj"]
 size = Vector2(32, 26)
 
-[node name="green_locket" type="CharacterBody2D" groups=["Damageable"]]
+[node name="green_locket" type="CharacterBody2D" groups=["Damageable", "enemies"]]
 collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_4lhml")
 SPEED = 150
 max_health = 25
