@@ -30,7 +30,11 @@ func _ready():
 	add_key($KeyHolderPivot/KeyHolder/Paperclip)
 	$Hitbox.body_entered.connect(_on_hitbox_body_entered)
 	for i in range(3):
-		key_list.append(new_key.instantiate())
+		var key = new_key.instantiate()
+		## hacky way to ready the key
+		add_child(key)
+		remove_child(key)
+		key_list.append(key)
 
 func _physics_process(delta):
 	call_deferred("clear_stats")

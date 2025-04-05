@@ -49,7 +49,6 @@ func component_choice_made(path: String):
 		if current_components.size() >= 3:
 			button.disabled = true
 			button.text += "\nMax Capacity!"
-
 func key_choice_made(choice_index: int):
 	var player: Player = get_tree().get_first_node_in_group("Player")
 	player.key_list[choice_index].add_component(load(component_choice).instantiate())

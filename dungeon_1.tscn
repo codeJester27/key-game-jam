@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://lbwulf4d3sny"]
+[gd_scene load_steps=16 format=4 uid="uid://lbwulf4d3sny"]
 
 [ext_resource type="PackedScene" uid="uid://dci6411tqamih" path="res://locklets/standard_locklet.tscn" id="2_8y611"]
 [ext_resource type="Texture2D" uid="uid://diydppfycoxnk" path="res://dungeon_tiles.png" id="2_ksysw"]
 [ext_resource type="PackedScene" uid="uid://dbhrtjqdpe54c" path="res://locklets/red_locklet.tscn" id="3_8y611"]
 [ext_resource type="PackedScene" uid="uid://dquns5ihnk57h" path="res://locklets/green_locklet.tscn" id="4_gy3jp"]
 [ext_resource type="PackedScene" uid="uid://7tyhkopyphfq" path="res://locklets/pink_locklet.tscn" id="5_o3xwl"]
+[ext_resource type="PackedScene" uid="uid://cd6kh08m137v5" path="res://chest.tscn" id="6_o3xwl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6d3l7"]
 vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
@@ -147,3 +148,21 @@ position = Vector2(431, 151)
 
 [node name="StandardLocklet8" parent="." instance=ExtResource("2_8y611")]
 position = Vector2(854, 163)
+
+[node name="Chest" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(1070, 1414)
+
+[node name="Chest2" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(282, 1089)
+
+[node name="Chest3" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(1166, 841)
+
+[node name="Chest4" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(2361, 824)
+
+[node name="Chest5" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(1932, 1446)
+
+[node name="Chest6" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(3226, 1455)
