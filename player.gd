@@ -25,6 +25,7 @@ var stats: Stats = null
 func _ready():
 	add_key($KeyHolderPivot/KeyHolder/Paperclip)
 	add_key(eKey)
+	eKey.add_component(preload("res://key_components/basic_key_component.tscn").instantiate())
 
 func _physics_process(delta):
 	call_deferred("clear_stats")

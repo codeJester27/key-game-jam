@@ -1,5 +1,5 @@
 class_name GreenLocklet
-extends StandardLocklet
+extends BaseLocklet
 
 @export var arrow_scene: PackedScene = preload("res://arrow.tscn")
 @export var attack_range := 400.0

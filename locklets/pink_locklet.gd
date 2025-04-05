@@ -1,5 +1,5 @@
 class_name PinkLocklet
-extends StandardLocklet
+extends BaseLocklet
 
 @export var aura_heal_amount := 5
 @export var heal_particles_scene: PackedScene = preload("res://heal_particles.tscn")
