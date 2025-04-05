@@ -102,12 +102,21 @@ position = Vector2(162, 1118)
 
 [node name="RedLocklet" parent="." instance=ExtResource("3_8y611")]
 position = Vector2(640, 458)
+SPEED = 90
+max_health = 40
+health = 40
 
 [node name="GreenLocket" parent="." instance=ExtResource("4_gy3jp")]
 position = Vector2(1376, 1809)
+SPEED = 150
+max_health = 25
+health = 25
 
 [node name="GreenLocket2" parent="." instance=ExtResource("4_gy3jp")]
 position = Vector2(2469, 1815)
+SPEED = 150
+max_health = 25
+health = 25
 
 [node name="PinkLocklet" parent="." instance=ExtResource("5_o3xwl")]
 position = Vector2(2346, 471)
@@ -123,9 +132,15 @@ position = Vector2(2340, 226)
 
 [node name="GreenLocket3" parent="." instance=ExtResource("4_gy3jp")]
 position = Vector2(1382, 1050)
+SPEED = 150
+max_health = 25
+health = 25
 
 [node name="GreenLocket4" parent="." instance=ExtResource("4_gy3jp")]
 position = Vector2(2469, 1053)
+SPEED = 150
+max_health = 25
+health = 25
 
 [node name="StandardLocklet7" parent="." instance=ExtResource("2_8y611")]
 position = Vector2(431, 151)
