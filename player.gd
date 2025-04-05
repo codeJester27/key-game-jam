@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const HALF_PI = PI/2.0
 
-@export var SPEED = 250.0
+@export var SPEED = 175.0
 @onready var screen_size = get_viewport_rect().size
 @onready var key_holder = %KeyHolder
 @onready var key_holder_pivot = $KeyHolderPivot

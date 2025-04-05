@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcdrw5gilkff1"]
+[gd_scene load_steps=9 format=3 uid="uid://bcdrw5gilkff1"]
 
 [ext_resource type="Script" uid="uid://72f5xu4j42cf" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://ctkhfdbjlnkfr" path="res://protag.png" id="2_hqtel"]
+[ext_resource type="PackedScene" uid="uid://dvugbfr360yhp" path="res://paperclip.tscn" id="3_i3pqv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
 atlas = ExtResource("2_hqtel")
@@ -58,3 +59,5 @@ shape = SubResource("RectangleShape2D_onrkg")
 [node name="KeyHolder" type="Node2D" parent="KeyHolderPivot"]
 unique_name_in_owner = true
 position = Vector2(32, 0)
+
+[node name="Paperclip" parent="KeyHolderPivot/KeyHolder" instance=ExtResource("3_i3pqv")]
