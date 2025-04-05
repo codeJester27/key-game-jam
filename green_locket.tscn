@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://lahkvra68nlg"]
+
+[ext_resource type="Script" uid="uid://khgh3qfooiq0" path="res://green_locket.gd" id="1_4lhml"]
+[ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="1_hodkj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lhml"]
+atlas = ExtResource("1_hodkj")
+region = Rect2(256, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsemt"]
+atlas = ExtResource("1_hodkj")
+region = Rect2(320, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw5dc"]
+atlas = ExtResource("1_hodkj")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc8oh"]
+atlas = ExtResource("1_hodkj")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1t5x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lhml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsemt")
+}],
+"loop": true,
+"name": &"back_move",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw5dc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc8oh")
+}],
+"loop": true,
+"name": &"front_move",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hodkj"]
+size = Vector2(32, 26)
+
+[node name="green_locket" type="CharacterBody2D" groups=["Damageable"]]
+collision_layer = 4
+script = ExtResource("1_4lhml")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f1t5x")
+animation = &"front_move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_hodkj")

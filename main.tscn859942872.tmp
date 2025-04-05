@@ -16,15 +16,19 @@ texture_filter = 1
 
 [node name="standard_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_h2yge")]
 position = Vector2(741, 145)
+SPEED = null
+follow_distance = null
+acceleration = null
+max_health = null
+health = null
 player = NodePath("../Player")
+particles_scene = null
 
 [node name="red_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_lquwl")]
 position = Vector2(692, 189)
 player = NodePath("../Player")
 
-[node name="green_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_7mycd")]
-position = Vector2(810, 221)
-player = NodePath("../Player")
+[node name="green_locket" parent="." instance=ExtResource("5_7mycd")]
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(735, 787)
