@@ -10,6 +10,7 @@ script = ExtResource("1_1bvp3")
 metadata/_edit_horizontal_guides_ = [-272.0]
 
 [node name="Dungeon1" parent="." instance=ExtResource("2_0xm2m")]
+texture_filter = 1
 
 [node name="standard_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_h2yge")]
 position = Vector2(430, 156)

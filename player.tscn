@@ -61,3 +61,5 @@ unique_name_in_owner = true
 position = Vector2(32, 0)
 
 [node name="Paperclip" parent="KeyHolderPivot/KeyHolder" instance=ExtResource("3_i3pqv")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
