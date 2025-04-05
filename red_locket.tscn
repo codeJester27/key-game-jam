@@ -41,7 +41,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_f2olg")
 }],
 "loop": true,
-"name": &"front_move ",
+"name": &"front_move",
 "speed": 6.0
 }]
 
