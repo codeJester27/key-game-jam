@@ -63,3 +63,4 @@ position = Vector2(32, 0)
 [node name="Paperclip" parent="KeyHolderPivot/KeyHolder" instance=ExtResource("3_i3pqv")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.08979, 1.21075)
