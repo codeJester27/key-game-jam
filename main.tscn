@@ -14,7 +14,7 @@ metadata/_edit_horizontal_guides_ = [-272.0]
 texture_filter = 1
 
 [node name="standard_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_h2yge")]
-position = Vector2(430, 156)
+position = Vector2(741, 145)
 player = NodePath("../Player")
 
 [node name="red_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_lquwl")]
@@ -22,4 +22,4 @@ position = Vector2(692, 189)
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(550, 349)
+position = Vector2(735, 787)

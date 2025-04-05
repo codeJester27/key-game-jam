@@ -64,3 +64,7 @@ position = Vector2(32, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(1.08979, 1.21075)
+limit_left = 0
+limit_top = 0
+limit_right = 1408
+limit_bottom = 960
