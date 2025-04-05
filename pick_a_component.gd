@@ -16,7 +16,7 @@ func appear() -> bool:
 	%KeyChoice.hide()
 	scale = Vector2.ZERO
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "scale", Vector2.ONE, 1.0)
+	tween.tween_property(self, "scale", Vector2.ONE, 0.3)
 	if ComponentPool.components_available.size() <= 0:
 		queue_free()
 		return false
@@ -58,5 +58,5 @@ func key_choice_made(choice_index: int):
 
 func disappear():
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	tween.tween_property(self, "scale", Vector2.ZERO, 1.0)
+	tween.tween_property(self, "scale", Vector2.ZERO, 0.3)
 	tween.tween_callback(queue_free)

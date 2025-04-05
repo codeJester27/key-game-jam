@@ -6,6 +6,7 @@ const HALF_PI = PI/2.0
 @export var speed = 190.0
 @export var base_damage := 5
 @export var base_attack_speed := 1.0
+@export var base_speed_while_attacking := 0.7
 @onready var screen_size = get_viewport_rect().size
 @onready var key_holder = %KeyHolder
 @onready var key_holder_pivot = $KeyHolderPivot
@@ -50,7 +51,7 @@ func _physics_process(delta):
 	
 	var stats = get_player_stats()
 	
-	velocity = input_direction * (stats.speed * (0.7 if key and swinging else 1.0))
+	velocity = input_direction * (stats.speed * (stats.speed_while_attacking if key and swinging else 1.0))
 	
 	if velocity == Vector2.ZERO:
 		sprite.play("idle")
@@ -82,6 +83,9 @@ func take_damage(damage: int):
 	
 	if health <= 0:
 		die()
+
+func heal(hp: int):
+	health = clamp(health + 1, 0, max_health)
 
 func die():
 	print("Player died!")
@@ -119,7 +123,7 @@ func perform_attack(key: Key):
 func get_player_stats() -> Stats:
 	if stats:
 		return stats
-	stats = Stats.new(base_damage, base_attack_speed, speed)
+	stats = Stats.new(base_damage, base_attack_speed, speed, base_speed_while_attacking)
 	var key = get_held_key()
 	if key:
 		for component in key.get_key_components():
@@ -133,7 +137,9 @@ class Stats:
 	var damage
 	var attack_speed
 	var speed
-	func _init(damage, attack_speed, speed):
+	var speed_while_attacking
+	func _init(damage, attack_speed, speed, speed_while_attacking):
 		self.damage = damage
 		self.attack_speed = attack_speed
 		self.speed = speed
+		self.speed_while_attacking = speed_while_attacking
