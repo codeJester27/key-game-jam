@@ -2,10 +2,11 @@ class_name Main
 extends Node
 
 @onready var player: Player = $Player
-
+@onready var restart_screen = $RestartScreen
 var game_active: bool = true
 
 func _ready():
+	$RestartScreen.visible = false
 	connect_player_signals()
 	print("Game initialized - Player and Sword ready")
 
@@ -21,18 +22,24 @@ func spawn_locklet():
 func connect_player_signals():
 	if player.has_signal("player_attacked"):
 		player.connect("player_attacked", _on_player_attack)
+	elif player.has_signal("died"):
+		player.connect("died", _died)
+		print("Connected")
+	else:
+		push_warning("Player node is missing 'died' signal")
 
 func _on_player_attack():
 	print("Player attacked with sword!")
 
+func _died():
+	$RestartScreen.visible = true 
+
 func pause_game():
 	game_active = false
-	Engine.time_scale = 0.0
 	print("Game paused")
 
 func resume_game():
 	game_active = true
-	Engine.time_scale = 1.0
 	print("Game resumed")
 
 func _process(delta):
@@ -43,3 +50,4 @@ func _process(delta):
 
 func _check_game_conditions():
 	pass
+	
