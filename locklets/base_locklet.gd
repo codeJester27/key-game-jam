@@ -66,7 +66,10 @@ func update_sprite_facing(facing: Vector2):
 		$AnimatedSprite2D.flip_h = false
 
 func calculate_damage_modifiers(damage, source: Node, hit_position: Vector2):
-	return damage
+	return damage * 2.0 if attack_should_crit(source) else damage
+
+func attack_should_crit(source: Node) -> bool:
+	return false
 
 func take_damage(damage, source: Node, hit_position: Vector2):
 	var direction = (player.global_position - global_position).normalized()
@@ -97,7 +100,7 @@ func take_damage(damage, source: Node, hit_position: Vector2):
 func calculate_knockback(damage, direction: Vector2):
 	# Knockback effect
 	var knockback_dir = -direction
-	velocity = knockback_dir * 400
+	velocity = knockback_dir * 400 * (damage/10.0)
 
 func modify_health(delta: int):
 	health = clamp(health + delta, 0, max_health)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bivwleuacvjm7"]
+
+[ext_resource type="Script" uid="uid://di1opr36hbjwg" path="res://key_components/fire.gd" id="1_vk68h"]
+[ext_resource type="Texture2D" uid="uid://fy3kqomtslqv" path="res://fire.png" id="1_y2ydp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fch4k"]
+size = Vector2(21, 24)
+
+[node name="Fire" type="Node2D"]
+script = ExtResource("1_vk68h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y2ydp")
+
+[node name="TickTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_fch4k")
+
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
