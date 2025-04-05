@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://lbwulf4d3sny"]
+[gd_scene load_steps=12 format=4 uid="uid://lbwulf4d3sny"]
 
 [ext_resource type="PackedScene" uid="uid://dci6411tqamih" path="res://standard_locket.tscn" id="2_8y611"]
 [ext_resource type="Texture2D" uid="uid://diydppfycoxnk" path="res://dungeon_tiles.png" id="2_ksysw"]
@@ -90,9 +90,12 @@ tile_set = SubResource("TileSet_ksysw")
 
 [node name="StandardLocklet" parent="." instance=ExtResource("2_8y611")]
 position = Vector2(959, 1383)
+collision_mask = 1
 
 [node name="StandardLocklet2" parent="." instance=ExtResource("2_8y611")]
 position = Vector2(452, 1162)
+collision_mask = 1
 
 [node name="StandardLocklet3" parent="." instance=ExtResource("2_8y611")]
 position = Vector2(119, 1424)
+collision_mask = 1

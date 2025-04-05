@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dci6411tqamih" path="res://standard_locket.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dquns5ihnk57h" path="res://green_locket.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dbhrtjqdpe54c" path="res://red_locket.tscn" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://7tyhkopyphfq" path="res://pink_locket.tscn" id="7_5vw27"]
-[ext_resource type="Script" uid="uid://bv25j3nxgb3dq" path="res://dungeon_camera.gd" id="7_272bh"]
+[ext_resource type="PackedScene" path="res://pink_locket.tscn" id="7_5vw27"]
+[ext_resource type="Script" path="res://dungeon_camera.gd" id="7_272bh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_1bvp3")
@@ -21,6 +21,7 @@ position = Vector2(629, 710)
 
 [node name="StandardLocket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_h2yge")]
 position = Vector2(634, 473)
+collision_mask = 1
 player = NodePath("../Player")
 
 [node name="RedLocket" parent="." instance=ExtResource("5_lquwl")]
