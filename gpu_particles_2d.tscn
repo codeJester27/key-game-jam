@@ -16,6 +16,8 @@ spread = 180.0
 initial_velocity_min = 75.0
 initial_velocity_max = 75.0
 gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_2j51h")
 
 [node name="FlashParticles" type="GPUParticles2D"]
