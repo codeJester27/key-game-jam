@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 KeyComponentPreviewGenerator="*res://key_component_preview_generator.gd"
 PickAComponentController="*res://pick_a_component_controller.tscn"
+PlayerUi="*res://player_ui.tscn"
 
 [display]
 

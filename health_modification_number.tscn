@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dol05l0136l0c"]
+
+[ext_resource type="LabelSettings" uid="uid://chnpi48ik0dmv" path="res://damage_label_settings.tres" id="1_afvjd"]
+[ext_resource type="Script" uid="uid://ceqgws3gnwund" path="res://health_modification_number.gd" id="2_nfm50"]
+
+[node name="HealthModificationNumber" type="Label"]
+z_index = 10
+offset_right = 40.0
+offset_bottom = 23.0
+text = "3"
+label_settings = ExtResource("1_afvjd")
+script = ExtResource("2_nfm50")

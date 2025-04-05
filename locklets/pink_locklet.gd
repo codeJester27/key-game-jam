@@ -47,6 +47,8 @@ func heal(amount: int):
 	particles.emitting = true
 	particles.finished.connect(particles.queue_free)
 
+func attack_should_crit(source):
+	return source.get("key_component") is PinkKeyComponent
 
 func _on_timer_timeout() -> void:
 	pass # Replace with function body.

@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const HALF_PI = PI/2.0
+const HP_NUMBER = preload("res://health_modification_number.tscn")
 
 @export var speed = 190.0
 @export var base_damage := 5
@@ -81,11 +82,20 @@ func take_damage(damage: int):
 	
 	print("[DAMAGE] Took %d damage | Health: %d → %d" % [damage, old_health, health])
 	
+	var num = HP_NUMBER.instantiate()
+	num.global_position = global_position
+	get_tree().current_scene.add_child(num)
+	num.appear(-damage)
+	
 	if health <= 0:
 		die()
 
 func heal(hp: int):
 	health = clamp(health + 1, 0, max_health)
+	var num = HP_NUMBER.instantiate()
+	num.global_position = global_position
+	get_tree().current_scene.add_child(num)
+	num.appear(hp)
 
 func die():
 	print("Player died!")

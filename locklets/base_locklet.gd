@@ -1,6 +1,8 @@
 class_name BaseLocklet
 extends CharacterBody2D
 
+const HP_NUMBER = preload("res://health_modification_number.tscn")
+
 @export var SPEED = 200
 @export var follow_distance: float = 100.0
 @export var acceleration: float = 5.0
@@ -74,6 +76,12 @@ func attack_should_crit(source: Node) -> bool:
 func take_damage(damage, source: Node, hit_position: Vector2):
 	var direction = (player.global_position - global_position).normalized()
 	damage = calculate_damage_modifiers(damage, source, hit_position)
+	
+	var hp_num = HP_NUMBER.instantiate()
+	hp_num.global_position = global_position
+	get_tree().current_scene.add_child(hp_num)
+	hp_num.appear(-damage, attack_should_crit(source))
+	
 	if particles_scene == null:
 		push_error("No particles scene assigned!")
 		return
@@ -109,3 +117,8 @@ func modify_health(delta: int):
 
 func heal(num: int):
 	modify_health(num)
+	
+	var hp_num = HP_NUMBER.instantiate()
+	hp_num.global_position = global_position
+	get_tree().current_scene.add_child(hp_num)
+	hp_num.appear(num)

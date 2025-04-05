@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjh6rs34dk1im"]
+
+[ext_resource type="PackedScene" uid="uid://iajialdkai0l" path="res://key_components/base_key_component.tscn" id="1_q7myh"]
+[ext_resource type="Script" uid="uid://cn0wvxfocrmae" path="res://key_components/pink_key_component.gd" id="2_rcqih"]
+[ext_resource type="Texture2D" uid="uid://c7sw508jqrkb5" path="res://aseprite/locks.png" id="3_mjtnm"]
+
+[node name="PinkKeyComponent" instance=ExtResource("1_q7myh")]
+script = ExtResource("2_rcqih")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_mjtnm")
+hframes = 8
+frame = 4
