@@ -1,24 +1,24 @@
 [gd_scene load_steps=12 format=3 uid="uid://7tyhkopyphfq"]
 
-[ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="1_jrks2"]
-[ext_resource type="Script" uid="uid://ce0ujrrucxown" path="res://pink_locklet.gd" id="1_luyip"]
-[ext_resource type="PackedScene" uid="uid://y6qh4yxoxkst" path="res://gpu_particles_2d.tscn" id="3_djt73"]
-[ext_resource type="Script" uid="uid://ceh0khfic80r4" path="res://aura.gd" id="3_kb3xx"]
+[ext_resource type="Script" uid="uid://ce0ujrrucxown" path="res://locklets/pink_locklet.gd" id="1_yq1r1"]
+[ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="2_dipxh"]
+[ext_resource type="Script" uid="uid://ceh0khfic80r4" path="res://aura.gd" id="3_xm4wv"]
+[ext_resource type="PackedScene" uid="uid://y6qh4yxoxkst" path="res://gpu_particles_2d.tscn" id="4_5jjxx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7dd2y"]
-atlas = ExtResource("1_jrks2")
+atlas = ExtResource("2_dipxh")
 region = Rect2(256, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_luyip"]
-atlas = ExtResource("1_jrks2")
+atlas = ExtResource("2_dipxh")
 region = Rect2(320, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djt73"]
-atlas = ExtResource("1_jrks2")
+atlas = ExtResource("2_dipxh")
 region = Rect2(64, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kb3xx"]
-atlas = ExtResource("1_jrks2")
+atlas = ExtResource("2_dipxh")
 region = Rect2(128, 128, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1ej7e"]
@@ -55,7 +55,7 @@ radius = 65.0692
 [node name="PinkLocklet" type="CharacterBody2D" groups=["Damageable", "enemies"]]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("1_luyip")
+script = ExtResource("1_yq1r1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.15, 1.15)
@@ -70,7 +70,7 @@ shape = SubResource("RectangleShape2D_jrks2")
 [node name="Aura" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("3_kb3xx")
+script = ExtResource("3_xm4wv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Aura"]
 position = Vector2(0, 8)
@@ -79,9 +79,13 @@ shape = SubResource("CircleShape2D_luyip")
 [node name="Timer" type="Timer" parent="Aura"]
 wait_time = 3.0
 
-[node name="FlashParticles" parent="." instance=ExtResource("3_djt73")]
+[node name="FlashParticles" parent="." instance=ExtResource("4_5jjxx")]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-2.38419e-07, 4)
+scale = Vector2(1.6, 2.2)
 
 [connection signal="body_entered" from="Aura" to="." method="_on_aura_body_entered"]
 [connection signal="body_exited" from="Aura" to="." method="_on_aura_body_exited"]

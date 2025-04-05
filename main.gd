@@ -10,7 +10,7 @@ func _ready():
 	print("Game initialized - Player and Sword ready")
 
 func spawn_locklet():
-	var locklet_scene = preload("res://standard_locket.tscn")
+	var locklet_scene = preload("res://locklets/standard_locklet.tscn")
 	var new_locklet = locklet_scene.instantiate()
 	
 	new_locklet.player_node = get_node("Player").get_path()
