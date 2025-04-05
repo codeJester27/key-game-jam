@@ -13,10 +13,6 @@ metadata/_edit_horizontal_guides_ = [-272.0]
 
 [node name="standard_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_h2yge")]
 position = Vector2(430, 156)
-SPEED = 125
-follow_distance = 100.0
-acceleration = 5.0
-health = 10
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]

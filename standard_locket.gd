@@ -67,4 +67,4 @@ func take_damage(source: Node, hit_position: Vector2):
 	
 	# Knockback effect
 	var knockback_dir = (global_position - source.global_position).normalized()
-	velocity = knockback_dir * 200
+	velocity = knockback_dir * 400

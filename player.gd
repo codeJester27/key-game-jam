@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var SPEED = 250.0
+@export var SPEED = 175
 @onready var screen_size = get_viewport_rect().size
 @onready var key_holder = %KeyHolder
 @onready var key_holder_pivot = $KeyHolderPivot
