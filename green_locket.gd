@@ -1,61 +1,41 @@
 class_name GreenLocklet
-extends CharacterBody2D
+extends StandardLocklet
 
-@export var SPEED = 150
-@export var follow_distance: float = 100.0
-@export var acceleration: float = 5.0
-@export var max_health: int = 20
-@export var health: int = 25
-@export var player: CharacterBody2D
 @export var arrow_scene: PackedScene = preload("res://arrow.tscn")
 @export var attack_range := 400.0
 @export var attack_cooldown := 3.0  # Now 3 seconds
 @export var shooting_stop_distance := 300.0
 
-@export var particles_scene: PackedScene = preload("res://gpu_particles_2d.tscn")
 var can_attack := true
 var is_shooting := false
 var is_knockback := false
 
-func _ready():
-	$AnimatedSprite2D.play("front_move")
-	if !player:
-		player = get_tree().get_first_node_in_group("Player")
-		if !player:
-			push_error("No player reference assigned!")
-			set_physics_process(false)
-
 func _physics_process(delta):
-	if !player or !is_instance_valid(player):
-		return
-	
+	super(delta)
+	if is_shooting and can_attack:
+		shoot_arrow(get_player_offset().normalized())
+
+func calculate_movement(delta: float, pf: Dictionary):
 	if is_knockback:
 		move_and_slide()
 		return
 	
-	var direction = (player.global_position - global_position).normalized()
-	var distance = global_position.distance_to(player.global_position)
-	var relative_pos = player.global_position - global_position
-	
-	# Animation handling
-	if relative_pos.y < 0:
-		$AnimatedSprite2D.play("back_move")
-	elif relative_pos.y > 0:
-		$AnimatedSprite2D.play("front_move")
-	
-	$AnimatedSprite2D.flip_h = relative_pos.x > 0
-	
-	# Movement and shooting
-	if distance > shooting_stop_distance:
-		is_shooting = false
-		var speed_multiplier = clamp(distance/follow_distance, 0.5, 1.0)
-		var target_velocity = direction * SPEED * speed_multiplier
-		velocity = velocity.lerp(target_velocity, acceleration * delta)
-		move_and_slide()
-	elif distance <= attack_range and can_attack and not is_shooting:
+	var player_dist = pf["player_dist"]
+	var direction = pf["next_dir"]
+	if not navigation_agent.is_navigation_finished():
+		update_sprite_facing(direction)
+		var speed_multiplier = clamp(player_dist/follow_distance, 0.5, 1.0)
+		if player_dist > shooting_stop_distance:
+			var target_velocity = direction * SPEED * speed_multiplier
+			velocity = velocity.lerp(target_velocity, acceleration * delta)
+	if player_dist <= attack_range:
+		update_sprite_facing(get_player_offset().normalized())
 		is_shooting = true
 		velocity = Vector2.ZERO
-		shoot_arrow(direction)
+	move_and_slide()
+
+func get_player_offset():
+	return player.global_position - global_position
 
 func shoot_arrow(direction: Vector2):
 	if !can_attack or !arrow_scene:
@@ -77,37 +57,11 @@ func shoot_arrow(direction: Vector2):
 	can_attack = true
 	is_shooting = false
 
-func take_damage(damage: int, source: Node, hit_position: Vector2):
-	if particles_scene == null:
-		push_error("No particles scene assigned!")
-		return
-	
-	# Damage effects
-	var particles = particles_scene.instantiate()
-	add_child(particles)
-	particles.global_position = hit_position
-	particles.emitting = true
-	
-	if particles.has_signal("finished"):
-		particles.finished.connect(particles.queue_free)
-	else:
-		get_tree().create_timer(1.0).timeout.connect(particles.queue_free)
-	
-	# Apply knockback
-	apply_knockback(source.global_position, damage)
-	modify_health(-damage)
-
-func apply_knockback(source_position: Vector2, damage: int):
-	var knockback_dir = (global_position - source_position).normalized()
+func calculate_knockback(damage: int, direction: Vector2):
 	var knockback_power = damage * 50
 	
 	is_knockback = true
-	velocity = knockback_dir * knockback_power
+	velocity = direction * knockback_power
 	
 	await get_tree().create_timer(0.3).timeout
 	is_knockback = false
-
-func modify_health(delta: int):
-	health = clamp(health + delta, 0, max_health)
-	if health <= 0:
-		queue_free()

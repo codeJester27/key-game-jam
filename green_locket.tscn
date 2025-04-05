@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lahkvra68nlg"]
+[gd_scene load_steps=9 format=3 uid="uid://dquns5ihnk57h"]
 
 [ext_resource type="Script" uid="uid://khgh3qfooiq0" path="res://green_locket.gd" id="1_4lhml"]
 [ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="1_hodkj"]
@@ -47,9 +47,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hodkj"]
 size = Vector2(32, 26)
 
-[node name="green_locket" type="CharacterBody2D" groups=["Damageable"]]
+[node name="green_locket" type="CharacterBody2D" groups=["Damageable", "enemies"]]
 collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_4lhml")
+SPEED = 150
+max_health = 25
+health = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.15, 1.15)
@@ -62,3 +66,6 @@ scale = Vector2(1.15, 1.15)
 shape = SubResource("RectangleShape2D_hodkj")
 
 [node name="ArrowSpawn" type="Marker2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1

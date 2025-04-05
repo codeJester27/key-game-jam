@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var max_health: int = 20
 @export var health: int = 20
 @export var player: CharacterBody2D
+@onready var navigation_agent = $NavigationAgent2D
 
 # Assign this in inspector or provide fallback
 @export var particles_scene: PackedScene = preload("res://gpu_particles_2d.tscn")
@@ -22,24 +23,46 @@ func _ready():
 func _physics_process(delta):
 	if !player or !is_instance_valid(player):
 		return
-	
-	var direction = (player.global_position - global_position).normalized()
-	var distance = global_position.distance_to(player.global_position)
-	var relative_pos = player.global_position - global_position
-	
-	var speed_multiplier = clamp(distance/follow_distance, 0.5, 1.0)
-	var target_velocity = direction * SPEED * speed_multiplier
-	velocity = velocity.lerp(target_velocity, acceleration * delta)
+	set_target_position()
+	calculate_movement(delta, get_pathfinding_info())
+
+func set_target_position():
+	var target_position = player.global_position
+	navigation_agent.target_position = target_position
+
+func get_pathfinding_info():
+	var next_path_position = navigation_agent.get_next_path_position()
+	return {
+		"next_pos": next_path_position,
+		"next_dir": (next_path_position - global_position).normalized(),
+		"next_dist": global_position.distance_to(next_path_position),
+		"player_dist": global_position.distance_to(player.global_position),
+	}
+
+func calculate_movement(delta: float, pf: Dictionary):
+	if not navigation_agent.is_navigation_finished():
+		var next_path_position = pf["next_pos"]
+		var direction = pf["next_dir"]
+		var distance = pf["next_dist"]
+		
+		update_sprite_facing(direction)
+		
+		var speed_multiplier = clamp(pf["player_dist"]/follow_distance, 0.5, 1.0)
+		var target_velocity = direction * SPEED * speed_multiplier
+		velocity = velocity.lerp(target_velocity, acceleration * delta)
+	else:
+		velocity = Vector2.ZERO
 	move_and_slide()
-	
-	if relative_pos.y < 0:
+
+func update_sprite_facing(facing: Vector2):
+	if facing.y < 0:
 		$AnimatedSprite2D.play("back_move")
-	elif relative_pos.y > 0:
+	elif facing.y > 0:
 		$AnimatedSprite2D.play("front_move")
 	
-	if relative_pos.x > 0:
+	if facing.x > 0:
 		$AnimatedSprite2D.flip_h = true
-	elif relative_pos.x < 0:
+	elif facing.x < 0:
 		$AnimatedSprite2D.flip_h = false
 
 func take_damage(damage, source: Node, hit_position: Vector2):
@@ -65,7 +88,9 @@ func take_damage(damage, source: Node, hit_position: Vector2):
 	# Damage handling
 	modify_health(-damage)
 	
-	
+	calculate_knockback(damage, direction)
+
+func calculate_knockback(damage, direction: Vector2):
 	# Knockback effect
 	var knockback_dir = -direction
 	velocity = knockback_dir * 400
@@ -74,3 +99,6 @@ func modify_health(delta: int):
 	health = clamp(health + delta, 0, max_health)
 	if health <= 0:
 		queue_free()
+
+func heal(num: int):
+	modify_health(num)
