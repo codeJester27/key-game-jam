@@ -1,4 +1,4 @@
-class_name BasicKeyComponent extends KeyComponent
+class_name GreenKeyComponent extends KeyComponent
 
 const STAB = preload("res://stab.tscn")
 
@@ -11,4 +11,4 @@ func on_swing(player, key):
 	stab.stab(self)
 
 func apply_modifiers(stats):
-	stats.speed *= 1.25
+	stats.speed_while_attacking /= 0.7

@@ -3,6 +3,8 @@ class_name Stab extends Node2D
 var key_component: KeyComponent
 var damage := 5.0
 
+signal on_damage
+
 func stab(key_component: KeyComponent):
 	var stats = key_component.get_player().get_player_stats()
 	damage = stats.damage
