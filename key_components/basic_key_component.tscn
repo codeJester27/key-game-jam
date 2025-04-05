@@ -11,5 +11,5 @@ width = 29
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture_filter = 1
 texture = ExtResource("3_ifmaf")
-hframes = 7
+hframes = 8
 frame = 1
