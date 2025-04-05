@@ -15,7 +15,7 @@ func on_swing(player, key):
 	stab.stab(self)
 "
 
-[node name="Key" instance=ExtResource("1_xqy54")]
+[node name="Paperclip" instance=ExtResource("1_xqy54")]
 
 [node name="KeyBase" parent="Pivot" index="0"]
 position = Vector2(16, 0)

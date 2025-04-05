@@ -20,6 +20,11 @@ func _ready():
 			ancestor = ancestor.get_parent()
 		if ancestor:
 			ancestor.equip(self)
+	
+	for child in get_children():
+		if child is KeyComponent:
+			remove_child(child)
+			add_component(child)
 
 func swing():
 	for comp in key_components.get_children():
@@ -29,10 +34,13 @@ func swing():
 
 func position_components():
 	var left_edge = 12.0
+	var z = 0
 	for component in key_components.get_children():
 		if component is KeyComponent:
 			component.position.x = left_edge + component.width/2.0
-			left_edge += component.width
+			component.z_index = z
+			z += 1
+			left_edge += component.width - 1
 
 func add_component(component: KeyComponent):
 	key_components.add_child(component)

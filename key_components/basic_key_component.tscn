@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://fwmq2ju5ijj0"]
+
+[ext_resource type="PackedScene" uid="uid://iajialdkai0l" path="res://key_components/base_key_component.tscn" id="1_av2oh"]
+[ext_resource type="Script" uid="uid://mfhdix0vg716" path="res://key_components/basic_key_component.gd" id="2_3ifiv"]
+[ext_resource type="Texture2D" uid="uid://bojkwuolr715v" path="res://Sprite-0001-Sheet.png" id="2_ifmaf"]
+
+[node name="BasicKeyComponent" instance=ExtResource("1_av2oh")]
+script = ExtResource("2_3ifiv")
+width = 29
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture_filter = 1
+texture = ExtResource("2_ifmaf")
+hframes = 4
+frame = 1
