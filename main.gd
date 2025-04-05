@@ -2,7 +2,6 @@ class_name Main
 extends Node
 
 @onready var player: Player = $Player
-@onready var sword: KeySword = $Player/key_sword
 
 var game_active: bool = true
 

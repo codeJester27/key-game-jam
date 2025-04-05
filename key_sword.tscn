@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvwc4i4kklfqs"]
+[gd_scene load_steps=3 format=3 uid="uid://dxrj177yj2mn1"]
 
-[ext_resource type="Script" uid="uid://cxr3pvperr01w" path="res://key_sword.gd" id="1_i0ald"]
 [ext_resource type="Texture2D" uid="uid://dg0b4nk1p3pag" path="res://icon.svg" id="1_uecdl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ald"]
 size = Vector2(32, 160)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_i0ald")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 1.25)

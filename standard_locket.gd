@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export var SPEED = 125
 @export var follow_distance: float = 100.0
 @export var acceleration: float = 5.0
-@export var health: int = 10
+@export var max_health: int = 20
+@export var health: int = 20
 @export var player: CharacterBody2D
 
 # Assign this in inspector or provide fallback
@@ -41,7 +42,7 @@ func _physics_process(delta):
 	elif relative_pos.x < 0:
 		$AnimatedSprite2D.flip_h = false
 
-func take_damage(source: Node, hit_position: Vector2):
+func take_damage(damage, source: Node, hit_position: Vector2):
 	var direction = (player.global_position - global_position).normalized()
 	if particles_scene == null:
 		push_error("No particles scene assigned!")
@@ -62,10 +63,14 @@ func take_damage(source: Node, hit_position: Vector2):
 		timer.timeout.connect(particles.queue_free)
 	
 	# Damage handling
-	health -= 1
-	if health <= 0:
-		queue_free()
+	modify_health(-damage)
+	
 	
 	# Knockback effect
 	var knockback_dir = -direction
 	velocity = knockback_dir * 400
+
+func modify_health(delta: int):
+	health = clamp(health + delta, 0, max_health)
+	if health <= 0:
+		queue_free()
