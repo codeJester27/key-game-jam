@@ -6,17 +6,17 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xo8u6"]
 atlas = ExtResource("2_enmsc")
-region = Rect2(192, 0, 64, 64)
+region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_743ql"]
 atlas = ExtResource("2_enmsc")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ymyc6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_enmsc"]
 atlas = ExtResource("2_enmsc")
-region = Rect2(256, 0, 64, 64)
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_25gfe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymyc6"]
 atlas = ExtResource("2_enmsc")
 region = Rect2(128, 0, 64, 64)
 
@@ -35,10 +35,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ymyc6")
+"texture": SubResource("AtlasTexture_enmsc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_25gfe")
+"texture": SubResource("AtlasTexture_ymyc6")
 }],
 "loop": true,
 "name": &"front_move",
@@ -56,10 +56,9 @@ script = ExtResource("1_gf6aa")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bv3b8")
 animation = &"front_move"
-frame_progress = 0.801357
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -3)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_hkdcy")
 
 [node name="FlashParticles" parent="." instance=ExtResource("3_enmsc")]
