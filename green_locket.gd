@@ -58,7 +58,7 @@ func shoot_arrow(direction: Vector2):
 	is_shooting = false
 
 func calculate_knockback(damage: int, direction: Vector2):
-	var knockback_power = damage * 50
+	var knockback_power = damage * -50
 	
 	is_knockback = true
 	velocity = direction * knockback_power
