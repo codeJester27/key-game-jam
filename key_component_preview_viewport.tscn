@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://r43ghon2egq2"]
+
+[ext_resource type="Script" uid="uid://3ei3t8e0hlkm" path="res://key_component_preview_viewport.gd" id="1_fnm5m"]
+
+[node name="KeyComponentPreview" type="SubViewport"]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(64, 64)
+render_target_update_mode = 4
+script = ExtResource("1_fnm5m")

@@ -49,9 +49,10 @@ func get_player() -> Player:
 
 func get_key_components() -> Array[KeyComponent]:
 	var comps: Array[KeyComponent] = []
-	for component in key_components.get_children():
-		if component is KeyComponent:
-			comps.append(component)
+	if key_components:
+		for component in key_components.get_children():
+			if component is KeyComponent:
+				comps.append(component)
 	return comps
 
 func add_component(component: KeyComponent):
