@@ -63,7 +63,6 @@ func take_damage(damage, source: Node, hit_position: Vector2):
 	particles.global_position = hit_position
 	particles.emitting = true
 	
-	# Auto-cleanup
 	if particles.has_signal("finished"):
 		particles.finished.connect(particles.queue_free)
 	else:
