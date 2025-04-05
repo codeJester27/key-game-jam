@@ -14,13 +14,8 @@ var is_swinging:
 
 func _ready():
 	position_components()
-	if auto_equip:
-		var ancestor = get_parent()
-		while ancestor and ancestor is not Player:
-			ancestor = ancestor.get_parent()
-		if ancestor:
-			ancestor.equip(self)
 	
+	##this is most for testing purposes
 	for child in get_children():
 		if child is KeyComponent:
 			remove_child(child)
@@ -31,6 +26,8 @@ func swing():
 		if comp is KeyComponent:
 			comp.on_swing(player, self)
 	animation_player.play("swing")
+	var stats = get_player().get_player_stats()
+	animation_player.speed_scale = stats.attack_speed
 
 func position_components():
 	var left_edge = 12.0
@@ -41,6 +38,21 @@ func position_components():
 			component.z_index = z
 			z += 1
 			left_edge += component.width - 1
+
+func get_player() -> Player:
+	if not player or not player.is_ancestor_of(self):
+		var ancestor = get_parent()
+		while ancestor and ancestor is not Player:
+			ancestor = ancestor.get_parent()
+		player = ancestor
+	return player
+
+func get_key_components() -> Array[KeyComponent]:
+	var comps: Array[KeyComponent] = []
+	for component in key_components.get_children():
+		if component is KeyComponent:
+			comps.append(component)
+	return comps
 
 func add_component(component: KeyComponent):
 	key_components.add_child(component)
