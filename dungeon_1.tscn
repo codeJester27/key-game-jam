@@ -151,3 +151,18 @@ position = Vector2(854, 163)
 
 [node name="Chest" parent="." instance=ExtResource("6_o3xwl")]
 position = Vector2(1070, 1414)
+
+[node name="Chest2" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(282, 1089)
+
+[node name="Chest3" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(1166, 841)
+
+[node name="Chest4" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(2361, 824)
+
+[node name="Chest5" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(1932, 1446)
+
+[node name="Chest6" parent="." instance=ExtResource("6_o3xwl")]
+position = Vector2(3226, 1455)
