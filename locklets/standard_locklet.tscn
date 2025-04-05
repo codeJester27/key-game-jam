@@ -50,7 +50,6 @@ size = Vector2(32, 26)
 
 [node name="StandardLocklet" type="CharacterBody2D" groups=["Damageable", "enemies"]]
 collision_layer = 4
-collision_mask = 4
 script = ExtResource("1_ojd0g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
