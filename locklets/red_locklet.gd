@@ -1,5 +1,5 @@
 class_name RedLocklet
-extends StandardLocklet
+extends BaseLocklet
 
 # remove knockback
 func calculate_knockback(damage, direction: Vector2):

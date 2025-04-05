@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const HALF_PI = PI/2.0
 
-@export var speed = 175.0
+@export var speed = 190.0
 @export var base_damage := 5
 @export var base_attack_speed := 1.0
 @onready var screen_size = get_viewport_rect().size
@@ -31,6 +31,7 @@ func _ready():
 	add_key($KeyHolderPivot/KeyHolder/Paperclip)
 	$Hitbox.body_entered.connect(_on_hitbox_body_entered)
 	add_key(eKey)
+	eKey.add_component(preload("res://key_components/basic_key_component.tscn").instantiate())
 
 func _physics_process(delta):
 	call_deferred("clear_stats")

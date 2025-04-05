@@ -1,4 +1,4 @@
-class_name StandardLocklet
+class_name BaseLocklet
 extends CharacterBody2D
 
 @export var SPEED = 200
@@ -65,8 +65,12 @@ func update_sprite_facing(facing: Vector2):
 	elif facing.x < 0:
 		$AnimatedSprite2D.flip_h = false
 
+func calculate_damage_modifiers(damage, source: Node, hit_position: Vector2):
+	return damage
+
 func take_damage(damage, source: Node, hit_position: Vector2):
 	var direction = (player.global_position - global_position).normalized()
+	damage = calculate_damage_modifiers(damage, source, hit_position)
 	if particles_scene == null:
 		push_error("No particles scene assigned!")
 		return
