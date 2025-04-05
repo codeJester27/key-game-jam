@@ -5,9 +5,10 @@ extends CharacterBody2D
 @export var follow_distance: float = 100.0
 @export var acceleration: float = 5.0
 @export var health: int = 10
-
 @export var player: CharacterBody2D
 
+# Assign this in inspector or provide fallback
+@export var particles_scene: PackedScene = preload("res://gpu_particles_2d.tscn")
 
 func _ready():
 	$AnimatedSprite2D.play("front_move")
@@ -16,7 +17,7 @@ func _ready():
 		if !player:
 			push_error("No player reference assigned!")
 			set_physics_process(false)
-			
+
 func _physics_process(delta):
 	if !player or !is_instance_valid(player):
 		return
@@ -40,7 +41,30 @@ func _physics_process(delta):
 	elif relative_pos.x < 0:
 		$AnimatedSprite2D.flip_h = false
 
-
-func take_damage(source: Node):
-	$damage_timer.start()
+func take_damage(source: Node, hit_position: Vector2):
+	if particles_scene == null:
+		push_error("No particles scene assigned!")
+		return
 	
+	# Instantiate and configure particles
+	var particles = particles_scene.instantiate()
+	add_child(particles)
+	particles.global_position = hit_position
+	particles.emitting = true
+	
+	# Auto-cleanup
+	if particles.has_signal("finished"):
+		particles.finished.connect(particles.queue_free)
+	else:
+		# Fallback timer if no finished signal
+		var timer = get_tree().create_timer(1.0)
+		timer.timeout.connect(particles.queue_free)
+	
+	# Damage handling
+	health -= 1
+	if health <= 0:
+		queue_free()
+	
+	# Knockback effect
+	var knockback_dir = (global_position - source.global_position).normalized()
+	velocity = knockback_dir * 200

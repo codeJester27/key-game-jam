@@ -10,4 +10,6 @@ func stab(key_component: KeyComponent):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Damageable"):
-		body.take_damage(key_component)
+		var hit_pos = $Area2D.global_position
+		body.take_damage(self, hit_pos)
+		print("hit")
