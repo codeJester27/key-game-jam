@@ -49,6 +49,7 @@ size = Vector2(32, 26)
 
 [node name="GreenLocket" type="CharacterBody2D" groups=["Damageable", "enemies"]]
 collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_rknl4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
