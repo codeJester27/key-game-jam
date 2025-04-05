@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://66kfq21uk7xb"]
+
+[ext_resource type="Texture2D" uid="uid://dg0b4nk1p3pag" path="res://icon.svg" id="1_x8fby"]
+[ext_resource type="Script" uid="uid://dh7yesxlwf5yl" path="res://component_choice_button.gd" id="1_xwfg2"]
+
+[node name="ComponentChoiceButton" type="Button"]
+custom_minimum_size = Vector2(192, 192)
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("1_x8fby")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+script = ExtResource("1_xwfg2")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
