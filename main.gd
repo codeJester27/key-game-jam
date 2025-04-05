@@ -6,7 +6,7 @@ extends Node
 var game_active: bool = true
 
 func _ready():
-	$RestartScreen.visible = false
+	restart_screen.visible = false
 	connect_player_signals()
 	print("Game initialized - Player and Sword ready")
 
@@ -32,7 +32,7 @@ func _on_player_attack():
 	print("Player attacked with sword!")
 
 func _died():
-	$RestartScreen.visible = true 
+	restart_screen.visible = true 
 
 func pause_game():
 	game_active = false
