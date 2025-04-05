@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cymq10tmk1nv1"]
+[gd_scene load_steps=8 format=3 uid="uid://cymq10tmk1nv1"]
 
 [ext_resource type="Script" uid="uid://buoqvok2kpqfm" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bcdrw5gilkff1" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://lbwulf4d3sny" path="res://dungeon_1.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dci6411tqamih" path="res://standard_locket.tscn" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://lahkvra68nlg" path="res://green_locket.tscn" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dquns5ihnk57h" path="res://green_locket.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dbhrtjqdpe54c" path="res://red_locket.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://bv25j3nxgb3dq" path="res://dungeon_camera.gd" id="7_272bh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_1bvp3")
@@ -14,17 +15,20 @@ metadata/_edit_horizontal_guides_ = [-272.0]
 [node name="Dungeon1" parent="." instance=ExtResource("2_0xm2m")]
 texture_filter = 1
 
-[node name="standard_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_h2yge")]
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(618, 1797)
+
+[node name="StandardLocket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_h2yge")]
 position = Vector2(634, 473)
 player = NodePath("../Player")
 
-[node name="red_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_lquwl")]
+[node name="RedLocket" parent="." instance=ExtResource("5_lquwl")]
 position = Vector2(692, 189)
-player = NodePath("../Player")
 
-[node name="green_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_7mycd")]
+[node name="GreenLocket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_7mycd")]
 position = Vector2(810, 221)
 player = NodePath("../Player")
 
-[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(663, 734)
+[node name="DungeonCamera" type="Camera2D" parent="."]
+script = ExtResource("7_272bh")
+metadata/_custom_type_script = "uid://bv25j3nxgb3dq"

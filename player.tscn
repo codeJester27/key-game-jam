@@ -41,7 +41,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(22, 61)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_onrkg")
 
@@ -61,10 +61,3 @@ unique_name_in_owner = true
 position = Vector2(32, 0)
 
 [node name="Paperclip" parent="KeyHolderPivot/KeyHolder" instance=ExtResource("3_i3pqv")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(1.08979, 1.21075)
-limit_left = 0
-limit_top = 0
-limit_right = 1280
-limit_bottom = 960
