@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://nihtn6wxi3jh"]
+
+[ext_resource type="PackedScene" uid="uid://iajialdkai0l" path="res://key_components/base_key_component.tscn" id="1_7a8oq"]
+[ext_resource type="Script" uid="uid://8ry4cseelehk" path="res://key_components/purple_key_component.gd" id="1_rpvhs"]
+[ext_resource type="Texture2D" uid="uid://bojkwuolr715v" path="res://Sprite-0001-Sheet.png" id="2_wgs7g"]
+[ext_resource type="PackedScene" uid="uid://ch82gxdb7tomw" path="res://key_components/shadow_ball.tscn" id="3_41mkt"]
+
+[node name="PurpleKeyComponent" instance=ExtResource("1_7a8oq")]
+script = ExtResource("1_rpvhs")
+ball_scene = ExtResource("3_41mkt")
+attack_range = 400.0
+ball_speed = 400.0
+attack_cooldown = 1.0
+shooting_stop_distance = 300.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_wgs7g")
+hframes = 4
+frame = 3
+
+[node name="BallSpawn" type="Marker2D" parent="." index="1"]

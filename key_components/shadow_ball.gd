@@ -1,8 +1,9 @@
-class_name Arrow extends Area2D 
-@export var speed := 600.0
-@export var damage := 10
+class_name ShadowBall extends Area2D 
+@export var speed := 400.0
+@export var damage := 15
 @export var max_lifetime := 2.0
 var direction := Vector2.RIGHT
+var key_component: KeyComponent
 
 func _ready():
 	body_entered.connect(_on_body_entered)
@@ -16,5 +17,5 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if body.has_method("take_damage"):
-		body.take_damage(damage)
+		body.take_damage(damage, self, direction)
 	queue_free()
