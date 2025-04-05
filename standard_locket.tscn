@@ -46,7 +46,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkdcy"]
-size = Vector2(32, 44)
+size = Vector2(32, 38)
 
 [node name="StandardLocklet" type="CharacterBody2D" groups=["Damageable"]]
 collision_layer = 4
@@ -58,7 +58,7 @@ sprite_frames = SubResource("SpriteFrames_bv3b8")
 animation = &"front_move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_hkdcy")
 
 [node name="FlashParticles" parent="." instance=ExtResource("3_enmsc")]
