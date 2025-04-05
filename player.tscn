@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcdrw5gilkff1"]
+[gd_scene load_steps=10 format=3 uid="uid://bcdrw5gilkff1"]
 
 [ext_resource type="Script" uid="uid://72f5xu4j42cf" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://ctkhfdbjlnkfr" path="res://protag.png" id="2_hqtel"]
@@ -38,10 +38,13 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(22, 61)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(22, 61)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Damageable", "Player"]]
 collision_layer = 2
 script = ExtResource("1_onrkg")
 
@@ -49,6 +52,14 @@ script = ExtResource("1_onrkg")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_2hs0m")
 animation = &"idle"
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, 2.5)
+shape = SubResource("RectangleShape2D_i3pqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2.5)
@@ -61,3 +72,8 @@ unique_name_in_owner = true
 position = Vector2(32, 0)
 
 [node name="Paperclip" parent="KeyHolderPivot/KeyHolder" instance=ExtResource("3_i3pqv")]
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

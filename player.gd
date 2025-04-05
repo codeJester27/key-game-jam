@@ -11,6 +11,11 @@ const HALF_PI = PI/2.0
 @onready var key_holder_pivot = $KeyHolderPivot
 @onready var sprite = $AnimatedSprite2D
 
+@export var max_health: int = 20
+@export var health: int = 20
+@export var invincibility_time: float = 0.5
+var is_invincible: bool = false
+
 @export var new_key: PackedScene = preload("res://key.tscn")
 @onready var eKey: Key = new_key.instantiate()
 
@@ -24,6 +29,7 @@ var stats: Stats = null
 
 func _ready():
 	add_key($KeyHolderPivot/KeyHolder/Paperclip)
+	$Hitbox.body_entered.connect(_on_hitbox_body_entered)
 	add_key(eKey)
 
 func _physics_process(delta):
@@ -62,13 +68,33 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+func take_damage(damage: int):
+	var old_health = health
+	health = max(health - damage, 0)
+	
+	print("[DAMAGE] Took %d damage | Health: %d → %d" % [damage, old_health, health])
+	
+	if health <= 0:
+		die()
+
+func die():
+	print("Player died!")
+	queue_free()
+	
+func _on_invincibility_timer_timeout():
+	is_invincible = false
+
+func _on_hitbox_body_entered(body: Node):
+	if !body.is_in_group("Player"):
+		take_damage(10)
+		return
+
 func get_held_key() -> Key:
 	for child in key_holder.get_children():
 		if child is Key:
 			return child
 	return null
 	
-
 func add_key(key: Key):
 	key_list.append(key)
 
