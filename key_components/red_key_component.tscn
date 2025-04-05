@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dva71qi7pgr4m"]
+[gd_scene load_steps=4 format=3 uid="uid://cgqx024cq0veq"]
 
 [ext_resource type="PackedScene" uid="uid://iajialdkai0l" path="res://key_components/base_key_component.tscn" id="1_3p114"]
 [ext_resource type="Texture2D" uid="uid://c7sw508jqrkb5" path="res://aseprite/locks.png" id="2_jykmn"]
-[ext_resource type="Script" path="res://key_components/red_key_component.gd" id="2_tq4rs"]
+[ext_resource type="Script" uid="uid://b3xsbyubcteil" path="res://key_components/red_key_component.gd" id="2_tq4rs"]
 
 [node name="RedKeyComponent" instance=ExtResource("1_3p114")]
 script = ExtResource("2_tq4rs")

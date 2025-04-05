@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ccqp21oqbxpbq"]
 
 [ext_resource type="PackedScene" uid="uid://iajialdkai0l" path="res://key_components/base_key_component.tscn" id="1_48k1h"]
-[ext_resource type="Script" path="res://key_components/green_key_component.gd" id="2_054cf"]
+[ext_resource type="Script" uid="uid://cwe6lss60qtio" path="res://key_components/green_key_component.gd" id="2_054cf"]
 [ext_resource type="Texture2D" uid="uid://c7sw508jqrkb5" path="res://aseprite/locks.png" id="2_j2dpj"]
 
 [node name="GreenKeyComponent" instance=ExtResource("1_48k1h")]
