@@ -50,11 +50,10 @@ func _physics_process(delta):
 	var key = get_held_key()
 	var swinging = key.is_swinging if key else false
 	
-	key_holder.visible = swinging
-	
 	var stats = get_player_stats()
 	
 	velocity = input_direction * (stats.speed * (stats.speed_while_attacking if key and swinging else 1.0))
+	
 	
 	if velocity == Vector2.ZERO:
 		sprite.play("idle")
@@ -63,13 +62,16 @@ func _physics_process(delta):
 		sprite.speed_scale = velocity.length() / speed
 	
 	if not swinging:
+		var swing_angle = (get_global_mouse_position() - global_position).angle()
+		key_holder_pivot.global_rotation = swing_angle
+		
 		if Input.is_action_pressed("attack"):
 			perform_attack(key)
 		
 		for i in range(0, 4):
 			if Input.is_action_just_pressed(str(i + 1)):
 				equip(key_list[i])
-
+	
 	if swinging:
 		var swing_angle = key_holder_pivot.global_rotation
 		sprite.flip_h = swing_angle > -HALF_PI and swing_angle < HALF_PI
@@ -129,8 +131,6 @@ func equip(key: Key):
 	key_holder.add_child(key)
 
 func perform_attack(key: Key):
-	var swing_angle = (get_global_mouse_position() - global_position).angle()
-	key_holder_pivot.global_rotation = swing_angle
 	if key:
 		key.swing()
 

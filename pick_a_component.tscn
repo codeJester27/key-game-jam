@@ -100,6 +100,7 @@ font = ExtResource("1_qqxec")
 font_size = 48
 
 [node name="PickAComponent" type="Control"]
+process_mode = 3
 visible = false
 texture_filter = 1
 layout_mode = 3
