@@ -55,5 +55,7 @@ func get_key_components() -> Array[KeyComponent]:
 	return comps
 
 func add_component(component: KeyComponent):
+	if not is_node_ready():
+		await ready
 	key_components.add_child(component)
 	position_components()
