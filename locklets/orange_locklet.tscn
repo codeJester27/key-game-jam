@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cktwc2bx3kvms"]
+
+[ext_resource type="Script" uid="uid://mo2cincjqgpa" path="res://locklets/orange_locklet.gd" id="1_uejek"]
+[ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="2_xwkuh"]
+[ext_resource type="PackedScene" uid="uid://y6qh4yxoxkst" path="res://gpu_particles_2d.tscn" id="3_h55xr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2ogg"]
+atlas = ExtResource("2_xwkuh")
+region = Rect2(256, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bab4"]
+atlas = ExtResource("2_xwkuh")
+region = Rect2(320, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_of5nr"]
+atlas = ExtResource("2_xwkuh")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykyir"]
+atlas = ExtResource("2_xwkuh")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wsbam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2ogg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bab4")
+}],
+"loop": true,
+"name": &"back_move",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_of5nr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykyir")
+}],
+"loop": true,
+"name": &"front_move",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hkdcy"]
+size = Vector2(32, 26)
+
+[node name="OrangeLocklet" type="CharacterBody2D" groups=["Damageable", "enemies"]]
+collision_layer = 4
+script = ExtResource("1_uejek")
+SPEED = 50
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wsbam")
+animation = &"front_move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_hkdcy")
+
+[node name="FlashParticles" parent="." instance=ExtResource("3_h55xr")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-2.38419e-07, 4)
+scale = Vector2(1.6, 2.2)

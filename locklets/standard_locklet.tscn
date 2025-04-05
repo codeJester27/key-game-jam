@@ -55,7 +55,7 @@ script = ExtResource("1_ojd0g")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_bv3b8")
-animation = &"front_move"
+animation = &"back_move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
