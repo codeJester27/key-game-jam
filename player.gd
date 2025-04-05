@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal died
+
 const HALF_PI = PI/2.0
 const HP_NUMBER = preload("res://health_modification_number.tscn")
 
@@ -101,6 +103,8 @@ func heal(hp: int):
 
 func die():
 	print("Player died!")
+	died.emit()
+	await get_tree().process_frame
 	queue_free()
 	
 func _on_invincibility_timer_timeout():

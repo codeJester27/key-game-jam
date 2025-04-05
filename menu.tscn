@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkbg425dydj22"]
+
+[ext_resource type="FontFile" uid="uid://bi3m63xiyklw0" path="res://fonts/PressStart2P-Regular.ttf" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://r741dloag05n" path="res://menu.gd" id="1_ouk20"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lti8b"]
+font = ExtResource("1_lti8b")
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_mae5d"]
+font_size = 72
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_ouk20"]
+default_font = ExtResource("1_lti8b")
+default_font_size = 48
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ouk20")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 84.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LOCK AND LOAD"
+label_settings = SubResource("LabelSettings_lti8b")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LOCK AND LOAD"
+label_settings = SubResource("LabelSettings_mae5d")
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ouk20")
+text = "START"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -13,6 +13,7 @@ config_version=5
 config/name="Lock and Load"
 run/main_scene="uid://cymq10tmk1nv1"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -131,3 +132,4 @@ right={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6q1kf2bsstq6"]
+[gd_scene load_steps=10 format=3 uid="uid://dx0jcnklnipdr"]
 
 [ext_resource type="Script" uid="uid://ca7ln13b4cs04" path="res://locklets/ye_ole_locklet.gd" id="1_2hqyf"]
 [ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="2_jeoty"]

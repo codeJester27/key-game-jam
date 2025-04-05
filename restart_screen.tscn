@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://c58f77qhni76e"]
+
+[ext_resource type="FontFile" uid="uid://bi3m63xiyklw0" path="res://fonts/PressStart2P-Regular.ttf" id="1_3s4qe"]
+[ext_resource type="Script" uid="uid://ds3udeeye62ua" path="res://restart_screen.gd" id="1_p6fpq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p6fpq"]
+font = ExtResource("1_3s4qe")
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_t5esk"]
+font_size = 40
+font_color = Color(0, 0, 0, 0)
+
+[sub_resource type="Theme" id="Theme_76tcw"]
+default_font = ExtResource("1_3s4qe")
+default_font_size = 44
+
+[node name="RestartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p6fpq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 300.0
+offset_right = 1280.0
+offset_bottom = 1260.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_p6fpq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "hi"
+label_settings = SubResource("LabelSettings_t5esk")
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_76tcw")
+text = "Restart?
+"

@@ -36,4 +36,7 @@ func spawn_locklet():
 	var locklet = all_locklets.pick_random().instantiate()
 	locklet.global_position = global_position
 	get_parent().add_child(locklet)
+	locklet = all_locklets.pick_random().instantiate()
+	locklet.global_position = global_position
+	get_parent().add_child(locklet)
 	choose_position()
