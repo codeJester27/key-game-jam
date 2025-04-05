@@ -1,21 +1,56 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcdrw5gilkff1"]
+[gd_scene load_steps=8 format=3 uid="uid://bcdrw5gilkff1"]
 
-[ext_resource type="Texture2D" uid="uid://dg0b4nk1p3pag" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://72f5xu4j42cf" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="PackedScene" uid="uid://dvugbfr360yhp" path="res://paperclip.tscn" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://ctkhfdbjlnkfr" path="res://protag.png" id="2_hqtel"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hs0m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(44, 44)
+size = Vector2(22, 61)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_onrkg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("1_4flbx")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_2hs0m")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2.5)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="KeyHolderPivot" type="Node2D" parent="."]
@@ -23,5 +58,3 @@ shape = SubResource("RectangleShape2D_onrkg")
 [node name="KeyHolder" type="Node2D" parent="KeyHolderPivot"]
 unique_name_in_owner = true
 position = Vector2(32, 0)
-
-[node name="Key" parent="KeyHolderPivot/KeyHolder" instance=ExtResource("3_i3pqv")]

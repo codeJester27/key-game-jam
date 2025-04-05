@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cymq10tmk1nv1"]
 
-[ext_resource type="Script" uid="uid://buoqvok2kpqfm" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Script" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bcdrw5gilkff1" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://lbwulf4d3sny" path="res://dungeon_1.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dci6411tqamih" path="res://standard_locket.tscn" id="2_h2yge"]
@@ -13,10 +13,6 @@ metadata/_edit_horizontal_guides_ = [-272.0]
 
 [node name="standard_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_h2yge")]
 position = Vector2(430, 156)
-SPEED = 125
-follow_distance = 100.0
-acceleration = 5.0
-health = 10
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
