@@ -1,3 +1,81 @@
-[gd_scene format=3 uid="uid://dx0jcnklnipdr"]
+[gd_scene load_steps=10 format=3 uid="uid://c6q1kf2bsstq6"]
 
-[node name="YeOleLocklet" type="Node2D"]
+[ext_resource type="Script" uid="uid://ca7ln13b4cs04" path="res://locklets/ye_ole_locklet.gd" id="1_2hqyf"]
+[ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="2_jeoty"]
+[ext_resource type="PackedScene" uid="uid://y6qh4yxoxkst" path="res://gpu_particles_2d.tscn" id="3_sn6a5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bl64"]
+atlas = ExtResource("2_jeoty")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u1bl"]
+atlas = ExtResource("2_jeoty")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwsuu"]
+atlas = ExtResource("2_jeoty")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in3x0"]
+atlas = ExtResource("2_jeoty")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rbb25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bl64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u1bl")
+}],
+"loop": true,
+"name": &"back_move",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwsuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in3x0")
+}],
+"loop": true,
+"name": &"front_move",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1n6ah"]
+size = Vector2(128, 104)
+
+[node name="YeOleLocklet" type="CharacterBody2D" groups=["Damageable", "enemies"]]
+collision_layer = 4
+script = ExtResource("1_2hqyf")
+SPEED = 40
+max_health = 200
+health = 200
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_rbb25")
+animation = &"front_move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_1n6ah")
+
+[node name="FlashParticles" parent="." instance=ExtResource("3_sn6a5")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-2.38419e-07, 4)
+scale = Vector2(1.6, 2.2)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="spawn_locklet"]
