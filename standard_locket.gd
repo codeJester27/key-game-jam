@@ -42,6 +42,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.flip_h = false
 
 func take_damage(source: Node, hit_position: Vector2):
+	var direction = (player.global_position - global_position).normalized()
 	if particles_scene == null:
 		push_error("No particles scene assigned!")
 		return
@@ -66,5 +67,5 @@ func take_damage(source: Node, hit_position: Vector2):
 		queue_free()
 	
 	# Knockback effect
-	var knockback_dir = (global_position - source.global_position).normalized()
+	var knockback_dir = -direction
 	velocity = knockback_dir * 400

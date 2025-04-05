@@ -9,10 +9,19 @@ const HALF_PI = PI/2.0
 @onready var key_holder_pivot = $KeyHolderPivot
 @onready var sprite = $AnimatedSprite2D
 
+@export var new_key: PackedScene = preload("res://key.tscn")
+@onready var eKey: Key = new_key.instantiate()
+
+@onready var key_list: Array = []
+
 var is_attacking: bool = false
 var thrust_distance: float = 60.0
 var attack_duration: float = 0.2
 var base_sword_offset = Vector2(120, 0) 
+
+func _ready():
+	add_key($KeyHolderPivot/KeyHolder/Paperclip)
+	add_key(eKey)
 
 func _physics_process(delta):
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -35,6 +44,11 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("attack") and not swinging:
 		perform_attack(key)
+		
+	if Input.is_action_just_pressed("1") and not swinging:
+		equip(key_list[0])
+	elif Input.is_action_just_pressed("2") and not swinging:
+		equip(key_list[1])
 
 	if swinging:
 		var swing_angle = key_holder_pivot.global_rotation
@@ -44,15 +58,21 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
-
 func get_held_key() -> Key:
 	for child in key_holder.get_children():
 		if child is Key:
 			return child
 	return null
+	
+
+func add_key(key: Key):
+	key_list.append(key)
 
 func equip(key: Key):
 	key.player = self
+	for child in key_holder.get_children():
+		key_holder.remove_child(child)
+	key_holder.add_child(key)
 
 func perform_attack(key: Key):
 	var swing_angle = (get_global_mouse_position() - global_position).angle()
