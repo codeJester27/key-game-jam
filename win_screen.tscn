@@ -46,7 +46,7 @@ position = Vector2(674, 820)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_1txte")
 autoplay = "default"
-frame_progress = 0.769818
+frame_progress = 0.555467
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchors_preset = -1
