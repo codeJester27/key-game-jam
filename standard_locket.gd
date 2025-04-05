@@ -99,3 +99,6 @@ func modify_health(delta: int):
 	health = clamp(health + delta, 0, max_health)
 	if health <= 0:
 		queue_free()
+
+func heal(num: int):
+	modify_health(num)
