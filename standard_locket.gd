@@ -1,7 +1,7 @@
 class_name StandardLocklet
 extends CharacterBody2D
 
-@export var SPEED = 125
+@export var SPEED = 200
 @export var follow_distance: float = 100.0
 @export var acceleration: float = 5.0
 @export var max_health: int = 20

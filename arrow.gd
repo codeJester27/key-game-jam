@@ -1,15 +1,15 @@
-class_name Arrow extends RigidBody2D
+extends Area2D # Using Area2D for better collision detection
 
-var damage := 10
-var speed := 600
+@export var speed := 600.0
+@export var damage := 10
 var direction := Vector2.RIGHT
 
-func _ready():
-	$Timer.start(2.0)  # Auto-delete after 2 seconds
-	apply_impulse(direction * speed)
+func set_direction(new_direction: Vector2):
+	direction = new_direction
+	rotation = direction.angle()
 
-func _on_timer_timeout():
-	queue_free()
+func _physics_process(delta):
+	position += direction * speed * delta
 
 func _on_body_entered(body):
 	if body.has_method("take_damage"):

@@ -1,12 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjl81vv6nhn12"]
+[gd_scene load_steps=4 format=3 uid="uid://b2jnyyqrxx31m"]
 
 [ext_resource type="Script" uid="uid://cxxn7xkscqctw" path="res://arrow.gd" id="1_l5ahi"]
+[ext_resource type="Texture2D" uid="uid://ch6x2ybkg63qi" path="res://aseprite/arrow.png" id="2_2ndhl"]
 
-[node name="Arrow" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5ahi"]
+size = Vector2(11, 43)
+
+[node name="arrow" type="Area2D"]
 script = ExtResource("1_l5ahi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("2_2ndhl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_l5ahi")
 
 [node name="lifetime" type="Timer" parent="."]

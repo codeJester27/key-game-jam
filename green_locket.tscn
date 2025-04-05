@@ -52,9 +52,13 @@ collision_layer = 4
 script = ExtResource("1_4lhml")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.15, 1.15)
 sprite_frames = SubResource("SpriteFrames_f1t5x")
 animation = &"front_move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(0, 8)
+scale = Vector2(1.15, 1.15)
 shape = SubResource("RectangleShape2D_hodkj")
+
+[node name="ArrowSpawn" type="Marker2D" parent="."]
