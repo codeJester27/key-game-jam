@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cymq10tmk1nv1"]
+[gd_scene load_steps=8 format=3 uid="uid://cymq10tmk1nv1"]
 
 [ext_resource type="Script" uid="uid://buoqvok2kpqfm" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bcdrw5gilkff1" path="res://player.tscn" id="1_ig7tw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dci6411tqamih" path="res://standard_locket.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://lahkvra68nlg" path="res://green_locket.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dbhrtjqdpe54c" path="res://red_locket.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://7tyhkopyphfq" path="res://pink_locklet.tscn" id="6_272bh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_1bvp3")
@@ -24,6 +25,10 @@ player = NodePath("../Player")
 
 [node name="green_locket" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_7mycd")]
 position = Vector2(810, 221)
+player = NodePath("../Player")
+
+[node name="pink_locklet" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_272bh")]
+position = Vector2(639, 331)
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]

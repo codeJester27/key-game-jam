@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://lahkvra68nlg"]
+[gd_scene load_steps=10 format=3 uid="uid://lahkvra68nlg"]
 
 [ext_resource type="Script" uid="uid://khgh3qfooiq0" path="res://green_locket.gd" id="1_4lhml"]
 [ext_resource type="Texture2D" uid="uid://dp30171isslko" path="res://Locklet.png" id="1_hodkj"]
+[ext_resource type="PackedScene" uid="uid://y6qh4yxoxkst" path="res://gpu_particles_2d.tscn" id="3_dsemt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4lhml"]
 atlas = ExtResource("1_hodkj")
@@ -62,3 +63,5 @@ scale = Vector2(1.15, 1.15)
 shape = SubResource("RectangleShape2D_hodkj")
 
 [node name="ArrowSpawn" type="Marker2D" parent="."]
+
+[node name="FlashParticles" parent="." instance=ExtResource("3_dsemt")]
