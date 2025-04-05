@@ -66,5 +66,5 @@ position = Vector2(32, 0)
 scale = Vector2(1.08979, 1.21075)
 limit_left = 0
 limit_top = 0
-limit_right = 1408
+limit_right = 1280
 limit_bottom = 960
