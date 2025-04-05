@@ -2,18 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bov7f775wmtvt" path="res://key.tscn" id="1_xqy54"]
 [ext_resource type="Texture2D" uid="uid://b2ssk05vl1axy" path="res://paperclip.png" id="2_bvf2f"]
-
-[sub_resource type="GDScript" id="GDScript_xqy54"]
-resource_name = "PaperclipStabComponent"
-script/source = "extends KeyComponent
-
-const STAB = preload(\"res://stab.tscn\")
-
-func on_swing(player, key):
-	var stab = STAB.instantiate()
-	add_child(stab)
-	stab.stab(self)
-"
+[ext_resource type="Script" uid="uid://cg2aqa26vbq4k" path="res://paperclip_component.gd" id="3_bvf2f"]
 
 [node name="Paperclip" instance=ExtResource("1_xqy54")]
 
@@ -22,5 +11,5 @@ position = Vector2(16, 0)
 texture = ExtResource("2_bvf2f")
 
 [node name="StabComponent" type="Node2D" parent="Pivot/KeyComponents" index="0"]
-script = SubResource("GDScript_xqy54")
+script = ExtResource("3_bvf2f")
 metadata/_custom_type_script = "uid://dxaxp2atwv27e"
