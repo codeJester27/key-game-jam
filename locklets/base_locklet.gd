@@ -14,6 +14,8 @@ const HP_NUMBER = preload("res://health_modification_number.tscn")
 # Assign this in inspector or provide fallback
 @export var particles_scene: PackedScene = preload("res://gpu_particles_2d.tscn")
 
+signal died
+
 func _ready():
 	$AnimatedSprite2D.play("front_move")
 	if !player:
@@ -113,6 +115,7 @@ func calculate_knockback(damage, direction: Vector2):
 func modify_health(delta: int):
 	health = clamp(health + delta, 0, max_health)
 	if health <= 0:
+		died.emit()
 		queue_free()
 
 func heal(num: int):

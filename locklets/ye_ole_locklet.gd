@@ -12,7 +12,11 @@ const all_locklets = [
 ] 
 
 func _ready():
+	died.connect(win_game)
 	super()
+
+func win_game():
+	get_tree().change_scene_to_file("res://win_screen.tscn")
 
 func choose_position():
 	randompos = global_position + Vector2(randf_range(-500, 500), randf_range(-500, 500))
