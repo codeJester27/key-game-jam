@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://buoqvok2kpqfm" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bcdrw5gilkff1" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://lbwulf4d3sny" path="res://dungeon_1.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://c58f77qhni76e" path="res://restart_screen.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" path="res://restart_screen.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://bv25j3nxgb3dq" path="res://dungeon_camera.gd" id="7_272bh"]
 
 [node name="Main" type="Node"]

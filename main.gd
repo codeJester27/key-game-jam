@@ -6,7 +6,7 @@ extends Node
 var game_active: bool = true
 
 func _ready():
-	restart_screen.hide()
+	restart_screen.visible = false
 	connect_player_signals()
 	print("Game initialized - Player and Sword ready")
 
@@ -22,7 +22,7 @@ func spawn_locklet():
 func connect_player_signals():
 	if player.has_signal("player_attacked"):
 		player.connect("player_attacked", _on_player_attack)
-	if player.has_signal("died"):
+	elif player.has_signal("died"):
 		player.connect("died", _died)
 		print("Connected")
 	else:
@@ -32,18 +32,7 @@ func _on_player_attack():
 	print("Player attacked with sword!")
 
 func _died():
-	var viewport := get_viewport()
-	var viewport_rect := viewport.get_visible_rect()
-	var camera := viewport.get_camera_2d()
-	
-	var screen_center: Vector2
-	if camera:
-		screen_center = camera.get_screen_center_position()
-	else:
-		screen_center = viewport_rect.size / 2
-
-	restart_screen.position = screen_center - (restart_screen.size / 2)
-	restart_screen.show()
+	restart_screen.visible = true 
 
 func pause_game():
 	game_active = false
