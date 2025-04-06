@@ -3,10 +3,12 @@ extends Control
 const BUTTON = preload("res://component_choice_button.tscn")
 
 @onready var choices_row = %ComponentChoicesRow
+@onready var description_label = $PanelContainer/MarginContainer/ComponentChoice/DescriptionLabel
 
 var component_choice: String
 
 func _ready():
+	description_label.text = "Select a component to view details"
 	for i in range(1,4):
 		%KeyChoicesRow.get_node(str(i)).pressed.connect(key_choice_made.bind(i))
 
@@ -29,10 +31,18 @@ func appear() -> bool:
 		button.set_key_component(choice)
 		button.text = ComponentPool.component_info[choice]["name"]
 		button.tooltip_text = ComponentPool.component_info[choice]["description"]
-		button.chosen.connect(component_choice_made)
+		description_label.text = ComponentPool.component_info[choice]["description"]
+		button.mouse_entered.connect(_on_component_hovered.bind(choice))
+		button.mouse_exited.connect(_on_component_unhovered)
 		choices_row.add_child(button)
 	
 	return true
+
+func _on_component_hovered(choice_path: String):
+	description_label.text = ComponentPool.component_info[choice_path]["description"]
+
+func _on_component_unhovered():
+	description_label.text = "Hover over components to see details"
 
 func component_choice_made(path: String):
 	component_choice = path

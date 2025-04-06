@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://v7l3ir56vxmw"]
 
-[ext_resource type="Script" uid="uid://b6mlljdiquige" path="res://pick_a_component_controller.gd" id="1_6tp7i"]
+[ext_resource type="Script" path="res://pick_a_component_controller.gd" id="1_6tp7i"]
 
 [node name="PickAComponentController" type="CanvasLayer"]
 layer = 3
