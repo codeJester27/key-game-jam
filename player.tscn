@@ -1,8 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcdrw5gilkff1"]
+[gd_scene load_steps=11 format=3 uid="uid://bcdrw5gilkff1"]
 
 [ext_resource type="Script" uid="uid://72f5xu4j42cf" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://ctkhfdbjlnkfr" path="res://protag.png" id="2_hqtel"]
 [ext_resource type="PackedScene" uid="uid://dvugbfr360yhp" path="res://paperclip.tscn" id="3_i3pqv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
 atlas = ExtResource("2_hqtel")
@@ -18,6 +22,14 @@ region = Rect2(96, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2hs0m"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sweqy")

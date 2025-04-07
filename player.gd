@@ -105,8 +105,10 @@ func heal(hp: int):
 func die():
 	print("Player died!")
 	died.emit()
-	await get_tree().process_frame
-	queue_free()
+	for child in $Hitbox.get_children(): child.set_deferred("disabled", true)
+	sprite.play("die")
+	set_process(false)
+	set_physics_process(false)
 	
 func _on_invincibility_timer_timeout():
 	is_invincible = false
