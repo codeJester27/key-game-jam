@@ -11,4 +11,7 @@ func on_swing(player, key):
 	stab.stab(self)
 
 func apply_modifiers(stats):
-	stats.speed_while_attacking /= 0.7
+	if stats.speed_while_attacking < 1.0:
+		stats.speed_while_attacking += 0.3
+	else:
+		stats.speed_while_attacking += 0.25
