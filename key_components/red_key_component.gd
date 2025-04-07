@@ -18,4 +18,4 @@ func _on_spawn_fire_timer_timeout():
 		var fire = FIRE.instantiate()
 		fire.key_component = self
 		get_tree().current_scene.add_child(fire)
-		fire.global_position = player.global_position
+		fire.global_position = player.global_position + Vector2(randf_range(-32.0, 32.0), randf_range(-32.0, 32.0))
