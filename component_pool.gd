@@ -20,7 +20,7 @@ const component_info = {
 	},
 	"res://key_components/green_key_component.tscn": {
 		"name": "Green Component",
-		"description": "Does more damage to Green Locklets. Move at normal speed while attacking."
+		"description": "Does more damage to Green Locklets. Move faster while attacking."
 	},
 	"res://key_components/purple_key_component.tscn": {
 		"name": "Purple Component",
