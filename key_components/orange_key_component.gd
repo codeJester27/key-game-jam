@@ -11,5 +11,5 @@ func on_swing(player, key):
 	stab.stab(self)
 
 func apply_modifiers(stats):
-	stats.damage *= 1.0/3.0
-	stats.attack_speed *= 5.0
+	stats.damage *= 1.0/2.0
+	stats.attack_speed += 2.0
