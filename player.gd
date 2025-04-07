@@ -105,7 +105,7 @@ func heal(hp: int):
 func die():
 	print("Player died!")
 	died.emit()
-	for child in $Hitbox.get_children(): child.set_deferred("disabled", true)
+	for child in find_children("*", "CollisionShape2D"): child.set_deferred("disabled", true)
 	sprite.play("die")
 	set_process(false)
 	set_physics_process(false)
