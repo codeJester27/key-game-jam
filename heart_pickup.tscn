@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2km6jfnmdiu4"]
+
+[ext_resource type="Texture2D" uid="uid://diwq3d4376x6c" path="res://heart.png" id="1_w2efk"]
+
+[sub_resource type="Animation" id="Animation_3u1mg"]
+resource_name = "picked_up"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epu4s"]
+_data = {
+&"picked_up": SubResource("Animation_3u1mg")
+}
+
+[node name="HeartPickup" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_w2efk")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_epu4s")
+}
