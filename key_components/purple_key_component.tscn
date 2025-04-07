@@ -12,6 +12,7 @@ attack_range = 400.0
 ball_speed = 400.0
 attack_cooldown = 1.0
 shooting_stop_distance = 300.0
+width = 29
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_wgs7g")
