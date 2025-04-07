@@ -20,10 +20,7 @@ func appear() -> bool:
 	scale = Vector2.ZERO
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "scale", Vector2.ONE, 0.3)
-	if ComponentPool.components_available.size() <= 0:
-		queue_free()
-		return false
-	var available = ComponentPool.components_available.duplicate()
+	var available = ComponentPool.components.duplicate()
 	available.shuffle()
 	var choices = available.slice(0, 3)
 	for choice in choices:
@@ -47,7 +44,6 @@ func _on_component_unhovered():
 
 func component_choice_made(path: String):
 	component_choice = path
-	ComponentPool.components_available.remove_at(ComponentPool.components_available.find(path))
 	%ComponentChoice.hide()
 	%KeyChoice.show()
 	for i in range(1, 4):
