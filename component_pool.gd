@@ -12,7 +12,7 @@ const components: Array[String] = [
 const component_info = {
 	"res://key_components/basic_key_component.tscn": {
 		"name": "Yellow Component",
-		"description": "Does more damage to Yellow Locklets. Slightly increases your speed."
+		"description": "Does more damage to Yellow Locklets. Increases your speed."
 	},
 	"res://key_components/red_key_component.tscn": {
 		"name": "Red Component",

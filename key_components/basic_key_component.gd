@@ -11,4 +11,4 @@ func on_swing(player, key):
 	stab.stab(self)
 
 func apply_modifiers(stats):
-	stats.speed += 0.35
+	stats.speed_mult += 0.25
